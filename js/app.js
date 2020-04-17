@@ -32,13 +32,14 @@ console.log(sectionsFragment);
 
 const navUl = document.getElementById("navbar__list");
 sectionsFragment.childNodes.forEach((childNode) => {
-  console.log(childNode);
   const sectionTitle = childNode.getElementsByTagName("h2")[0].innerText;
-  console.log(sectionTitle);
   const navUlChild = document.createElement("li");
   const link = document.createElement("a");
+
   link.innerText = sectionTitle;
   link.className = "menu__link";
+  link.href = "#" + childNode.id;
+
   navUlChild.appendChild(link);
   //   navUlChild.className("menu__link");
   navUl.appendChild(navUlChild);
