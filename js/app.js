@@ -30,6 +30,21 @@ const mainChildrenClone = mainChildren
   });
 console.log(sectionsFragment);
 
+const navUl = document.getElementById("navbar__list");
+sectionsFragment.childNodes.forEach((childNode) => {
+  console.log(childNode);
+  const sectionTitle = childNode.getElementsByTagName("h2")[0].innerText;
+  console.log(sectionTitle);
+  const navUlChild = document.createElement("li");
+  const link = document.createElement("a");
+  link.innerText = sectionTitle;
+  link.className = "menu__link";
+  navUlChild.appendChild(link);
+  //   navUlChild.className("menu__link");
+  navUl.appendChild(navUlChild);
+});
+console.log(navUl);
+
 /**
  * End Global Variables
  * Start Helper Functions
