@@ -18,6 +18,18 @@
  *
  */
 
+const sectionsFragment = document.createDocumentFragment();
+
+const mainChildren = document.getElementsByTagName("main")[0];
+const mainChildrenClone = mainChildren
+  .cloneNode(true)
+  .childNodes.forEach((childElement) => {
+    if (childElement.nodeName === "SECTION") {
+      sectionsFragment.appendChild(childElement);
+    }
+  });
+console.log(sectionsFragment);
+
 /**
  * End Global Variables
  * Start Helper Functions
