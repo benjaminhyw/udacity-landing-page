@@ -18,17 +18,34 @@
  *
  */
 
-const sectionsFragment = document.createDocumentFragment();
+let sectionsFragment = document.createDocumentFragment();
 
-const mainChildren = document.getElementsByTagName("main")[0];
-const mainChildrenClone = mainChildren
-  .cloneNode(true)
-  .childNodes.forEach((childElement) => {
-    if (childElement.nodeName === "SECTION") {
-      sectionsFragment.appendChild(childElement);
+const main = document.getElementsByTagName("main");
+const mainHeader = document.getElementsByClassName("main__hero")[0].outerHTML;
+const mainChildren = main[0];
+const mainChildrenClone = mainChildren.cloneNode(true);
+mainChildrenClone.childNodes.forEach((childElement) => {
+  if (childElement.nodeName === "SECTION") {
+    sectionsFragment.appendChild(childElement);
+  }
+});
+let sectionsFragmentClone = sectionsFragment.cloneNode(true);
+console.log(sectionsFragmentClone);
+
+const setActiveElement = (event) => {
+  sectionsFragmentClone.childNodes.forEach((childNode) => {
+    const sectionTitle = childNode.getElementsByTagName("h2")[0].innerText;
+    if (event.target.innerText === sectionTitle) {
+      childNode.className = "your-active-class";
+    } else {
+      childNode.className = "";
     }
   });
-console.log(sectionsFragment);
+
+  mainChildren.innerHTML = mainHeader;
+  mainChildren.appendChild(sectionsFragmentClone);
+  sectionsFragmentClone = sectionsFragment.cloneNode(true);
+};
 
 const navUl = document.getElementById("navbar__list");
 sectionsFragment.childNodes.forEach((childNode) => {
@@ -39,9 +56,9 @@ sectionsFragment.childNodes.forEach((childNode) => {
   link.innerText = sectionTitle;
   link.className = "menu__link";
   link.href = "#" + childNode.id;
+  navUlChild.onclick = setActiveElement;
 
   navUlChild.appendChild(link);
-  //   navUlChild.className("menu__link");
   navUl.appendChild(navUlChild);
 });
 console.log(navUl);
