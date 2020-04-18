@@ -33,6 +33,7 @@ let sectionsFragmentClone = sectionsFragment.cloneNode(true);
 console.log(sectionsFragmentClone);
 
 const setActiveElement = (event) => {
+  event.preventDefault();
   sectionsFragmentClone.childNodes.forEach((childNode) => {
     const sectionTitle = childNode.getElementsByTagName("h2")[0].innerText;
     if (event.target.innerText === sectionTitle) {
@@ -45,6 +46,11 @@ const setActiveElement = (event) => {
   mainChildren.innerHTML = mainHeader;
   mainChildren.appendChild(sectionsFragmentClone);
   sectionsFragmentClone = sectionsFragment.cloneNode(true);
+  let elementToScrollTo = document.getElementsByClassName(
+    "your-active-class"
+  )[0];
+
+  window.scroll({ top: elementToScrollTo.offsetTop, behavior: "smooth" });
 };
 
 const navUl = document.getElementById("navbar__list");
