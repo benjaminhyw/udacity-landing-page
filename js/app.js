@@ -30,7 +30,6 @@ mainChildrenClone.childNodes.forEach((childElement) => {
   }
 });
 let sectionsFragmentClone = sectionsFragment.cloneNode(true);
-console.log(sectionsFragmentClone);
 
 const setActiveElement = (event) => {
   event.preventDefault();
@@ -67,7 +66,6 @@ sectionsFragment.childNodes.forEach((childNode) => {
   navUlChild.appendChild(link);
   navUl.appendChild(navUlChild);
 });
-console.log(navUl);
 
 /**
  * End Global Variables
