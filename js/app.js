@@ -34,6 +34,12 @@ mainChildrenClone.childNodes.forEach((childElement) => {
   }
 });
 
+/**
+ * End Global Variables
+ * Start Helper Functions
+ *
+ */
+
 const getSectionTitle = (sectionNode) => {
   return sectionNode.getElementsByTagName("h2")[0].innerText;
 };
@@ -55,6 +61,11 @@ const applyActiveClass = (event) => {
   });
 };
 
+const updateMainChildren = () => {
+  mainChildren.innerHTML = mainHeaderHTML;
+  mainChildren.appendChild(sectionsFragmentClone);
+};
+
 const scrollToActiveElement = () => {
   let elementToScrollTo = document.getElementsByClassName(
     "your-active-class"
@@ -66,14 +77,18 @@ const scrollToActiveElement = () => {
 const setActiveElement = (event) => {
   event.preventDefault();
   applyActiveClass(event);
-
-  mainChildren.innerHTML = mainHeaderHTML;
-  mainChildren.appendChild(sectionsFragmentClone);
+  updateMainChildren();
   cloneSectionsFragment();
-
   scrollToActiveElement();
 };
 
+/**
+ * End Helper Functions
+ * Begin Main Functions
+ *
+ */
+
+// build the nav
 sectionsFragment.childNodes.forEach((childNode) => {
   const sectionTitle = getSectionTitle(childNode);
   const navItem = document.createElement("li");
@@ -87,20 +102,6 @@ sectionsFragment.childNodes.forEach((childNode) => {
   navItem.appendChild(link);
   navUl.appendChild(navItem);
 });
-
-/**
- * End Global Variables
- * Start Helper Functions
- *
- */
-
-/**
- * End Helper Functions
- * Begin Main Functions
- *
- */
-
-// build the nav
 
 // Add class 'active' to section when near top of viewport
 
