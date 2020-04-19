@@ -1,10 +1,15 @@
-# udacity-landing-page
+# Udacity Landing Page Project
 
-## Table of Contents
+This is my submission for Udacity's Front End Developer Nanodegree - Personal Blog Project.
 
-- [Instructions](#instructions)
+## Instructions:
 
-## Instructions
+- Clone Project
+- Open index.html in your browser
+
+All requested features work as expected.
+
+## Original Prompt:
 
 The starter project has some HTML and CSS styling to display a static version of the Landing Page project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
 
