@@ -2,11 +2,6 @@
 
 This is my submission for Udacity's Front End Developer Nanodegree - Personal Blog Project.
 
-## Table of Contents
-
-- [Instructions](#instructions)
-- [Original Prompt](#Original Prompt)
-
 ## Instructions:
 
 - Clone Project
