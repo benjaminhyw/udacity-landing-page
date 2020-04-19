@@ -102,19 +102,3 @@ sectionsFragment.childNodes.forEach((childNode) => {
   navItem.appendChild(link);
   navUl.appendChild(navItem);
 });
-
-// Add class 'active' to section when near top of viewport
-
-// Scroll to anchor ID using scrollTO event
-
-/**
- * End Main Functions
- * Begin Events
- *
- */
-
-// Build menu
-
-// Scroll to section on link click
-
-// Set sections as active
