@@ -19,32 +19,43 @@
  */
 
 let sectionsFragment = document.createDocumentFragment();
+let sectionsFragmentClone;
 
-const main = document.getElementsByTagName("main");
-const mainHeader = document.getElementsByClassName("main__hero")[0].outerHTML;
-const mainChildren = main[0];
+const mainChildren = document.getElementsByTagName("main")[0];
 const mainChildrenClone = mainChildren.cloneNode(true);
+const mainHeaderHTML = mainChildren.getElementsByClassName("main__hero")[0]
+  .outerHTML;
+
+const navUl = document.getElementById("navbar__list");
+
 mainChildrenClone.childNodes.forEach((childElement) => {
   if (childElement.nodeName === "SECTION") {
     sectionsFragment.appendChild(childElement);
   }
 });
-let sectionsFragmentClone = sectionsFragment.cloneNode(true);
 
-const setActiveElement = (event) => {
-  event.preventDefault();
+const getSectionTitle = (sectionNode) => {
+  return sectionNode.getElementsByTagName("h2")[0].innerText;
+};
+
+const cloneSectionsFragment = () => {
+  sectionsFragmentClone = sectionsFragment.cloneNode(true);
+};
+
+const applyActiveClass = (event) => {
+  cloneSectionsFragment();
   sectionsFragmentClone.childNodes.forEach((childNode) => {
-    const sectionTitle = childNode.getElementsByTagName("h2")[0].innerText;
+    const sectionTitle = getSectionTitle(childNode);
+
     if (event.target.innerText === sectionTitle) {
       childNode.className = "your-active-class";
     } else {
       childNode.className = "";
     }
   });
+};
 
-  mainChildren.innerHTML = mainHeader;
-  mainChildren.appendChild(sectionsFragmentClone);
-  sectionsFragmentClone = sectionsFragment.cloneNode(true);
+const scrollToActiveElement = () => {
   let elementToScrollTo = document.getElementsByClassName(
     "your-active-class"
   )[0];
@@ -52,19 +63,29 @@ const setActiveElement = (event) => {
   window.scroll({ top: elementToScrollTo.offsetTop, behavior: "smooth" });
 };
 
-const navUl = document.getElementById("navbar__list");
+const setActiveElement = (event) => {
+  event.preventDefault();
+  applyActiveClass(event);
+
+  mainChildren.innerHTML = mainHeaderHTML;
+  mainChildren.appendChild(sectionsFragmentClone);
+  cloneSectionsFragment();
+
+  scrollToActiveElement();
+};
+
 sectionsFragment.childNodes.forEach((childNode) => {
-  const sectionTitle = childNode.getElementsByTagName("h2")[0].innerText;
-  const navUlChild = document.createElement("li");
+  const sectionTitle = getSectionTitle(childNode);
+  const navItem = document.createElement("li");
   const link = document.createElement("a");
 
   link.innerText = sectionTitle;
   link.className = "menu__link";
   link.href = "#" + childNode.id;
-  navUlChild.onclick = setActiveElement;
+  navItem.onclick = setActiveElement;
 
-  navUlChild.appendChild(link);
-  navUl.appendChild(navUlChild);
+  navItem.appendChild(link);
+  navUl.appendChild(navItem);
 });
 
 /**
